@@ -1,0 +1,301 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e9f4f3;
+}
+
+.container {
+    width: 100%;
+    max-width: 320px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
+}
+
+.header {
+    background-color: #009999;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+
+.instructions {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 설정 버튼 스타일 */
+.settings-button {
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    cursor: pointer;
+    float: right;
+}
+
+.settings-button:hover {
+    color: #ccc;
+}
+.return-button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: #33cccc;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.return-button:hover {
+    background-color: #33cccc;
+}
+
+.instructions {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6;
+}
+/* 입력 영역 스타일 */
+.input-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    outline: none;
+}
+
+/* 키패드 스타일 */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열 레이아웃 */
+    gap: 10px; /* 버튼 간 간격 */
+    justify-content: center; /* 중앙 정렬 */
+    padding: 10px 0;
+}
+.keypad2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열 레이아웃 */
+    gap: 10px; /* 버튼 간 간격 */
+    justify-content: center; /* 중앙 정렬 */
+    padding: 10px 0;
+}
+
+.keypad button {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 50px; /* 버튼 높이 */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+/* 검색 버튼 스타일 */
+.search-button {
+    background-color: #009999 !important; /* 빨간색 */
+    color: white;
+}
+.card-button {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 50px; /* 버튼 높이 */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+/* 버튼 클릭 시 음영 효과 */
+.active {
+    background-color: #fa3636;
+}
+/* 결제 화면 이미지 스타일 */
+.info-section img {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    max-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+/* 정보 항목 스타일 */
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+.info-item label{
+    font-weight: bold;
+}
+.info-item span {
+    font-weight: bold;
+}
+
+/* 강조 표시 */
+.highlight {
+    color: red;
+    font-weight: bold;
+}
+
+/* 결제 및 반환 버튼 스타일 */
+.pay-button, .return-button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: #009999;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+.pay-button:hover, .return-button:hover {
+    background-color: #007f76;
+}
+
+.return-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.return-button:hover {
+    background-color: #bbb;
+}
+
+.payment-form {
+    margin-top: 15px;
+}
+
+
+.form-item2 {
+
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.payment-form{
+    text-align: center;
+}
+/* 선택 페이지 스타일 */
+.select-container .car-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.select-container .car-list li {
+    margin-bottom: 10px;
+}
+
+.select-container .car-list button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.select-container .car-list button:hover {
+    background-color: #e0e0e0;
+}
+.car-image {
+    width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.modal-background {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+    display: none; /* 초기 비표시 */
+    justify-content: center; 
+    align-items: center;
+    z-index: 9999; 
+}
+
+.modal-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.modal-message {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.close-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: #2980b9;
+}
+.version{
+    color: gray;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}

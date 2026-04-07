@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 화면</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container result-container">
+        <div class="header">Parking Go™ 스마트 결제</div>
+        <div class="instructions">결제금액을 확인하시고 결제 요청을 선택해주세요.</div>
+        <div class="info-section">
+            <!-- 차량 이미지 -->
+            <img id="car-image" src="{{ carImage }}" alt="차량 이미지">
+            <div class="info-item"><span>차량번호:</span><span>{{ carNumber }}</span></div>
+            <div class="info-item"><span>입차시간:</span><span>{{ entryTime }}</span></div>
+            <div class="info-item"><span>주차시간:</span><span>{{ parkingTime }}</span></div>
+            <div class="info-item">
+                <span>주차요금:</span>
+                {% if total == "정기권 입니다" %}
+                <span class="highlight">{{ total }}</span>
+                {% else %}
+                <span class="highlight">{{ total }} 원</span>
+                {% endif %}
+            </div>
+            <div class="info-item"><span>할인금액:</span><span>0 원</span></div>
+            <div class="info-item">
+                <span>결제금액:</span>
+                {% if total == "정기권 입니다" %}
+                <span class="highlight">{{ total }}</span>
+                {% else %}
+                <span class="highlight">{{ total }} 원</span>
+                {% endif %}
+            </div>
+
+        </div>
+        
+        <button class="pay-button" onclick="window.location.href='/payment?carNumber={{ carNumber }}&total={{ total }}'">결제하기</button>
+        <button class="return-button" onclick="window.location.href='/'">처음으로</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 요청</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container payment-container">
+        <div class="header">Parking Go™ 스마트 결제</div>
+        <div class="instructions">카드를 선택해주세요</div>
+        <div class="payment-form">
+            <div class="keypad2">
+                <button class="card-button">현대카드</button>
+                <button class="card-button">KB국민카드</button>
+                <button class="card-button">신한카드</button>
+                <button class="card-button">삼성카드</button>
+                <button class="card-button">롯데카드</button>
+                <button class="card-button">우리카드</button>
+                <button class="card-button">하나카드</button>
+                <button class="card-button">비씨카드</button>
+                <button class="card-button">농협카드</button>
+            </div>
+        </div>
+        {% set is_disabled = (total == "정기권 입니다") or (total == "0") %}
+
+<button
+    class="pay-button"
+    onclick="checkSpan()"
+    {% if is_disabled %}
+        disabled
+        style="background-color: #ccc; cursor: not-allowed;"
+    {% endif %}
+>
+    {% if total == "정기권 입니다" %}
+        정기권 입니다
+    {% elif total == "0" %}
+        무료 주차
+    {% else %}
+        {{ total }}원 결제하기
+    {% endif %}
+</button>
+
+
+        <button class="return-button" onclick="window.location.href='/'">처음으로</button>
+    </div>
+    <span style="display: none" id="cardcompany"></span>
+
+    <!-- =============== 커스텀 모달 (URL 표시 없이 알림창 띄우기) =============== -->
+    <div class="modal-background" id="alertModal">
+      <div class="modal-box">
+        <p class="modal-message" id="modalMessage">메시지</p>
+        <button class="close-btn" onclick="closeModal()">확인</button>
+      </div>
+    </div>
+
+    <script>
+        // 카드버튼 클릭 시 active 추가 & 선택된 카드명 span에 표시
+        const buttons = document.querySelectorAll(".card-button");
+        const output = document.getElementById("cardcompany");
+        buttons.forEach(button => {
+            button.addEventListener("click", function() {
+                // 모든 버튼에서 active 클래스 제거
+                buttons.forEach(btn => btn.classList.remove("active"));
+
+                // 클릭한 버튼에만 active 클래스 추가
+                this.classList.add("active");
+
+                // span에 클릭한 버튼의 텍스트 표시
+                output.textContent = this.innerText;
+            });
+        });
+
+        // 커스텀 알림 모달 열기
+        function openModal(message) {
+            document.getElementById("modalMessage").textContent = message;
+            document.getElementById("alertModal").style.display = "flex";
+        }
+        
+        // 모달 닫기
+        function closeModal() {
+            document.getElementById("alertModal").style.display = "none";
+        }
+
+        // 결제하기 버튼 누를 때 span 검사
+        function checkSpan() {
+            const spanValue = document.getElementById("cardcompany").textContent.trim();
+            
+            if (spanValue === "") {
+                // 카드 선택 안 함
+                openModal("카드를 선택하지 않았습니다. 다시 확인해 주세요.");
+            } else {
+                // 결제 요청
+                openModal("결제 요청이 전송되었습니다!");
+                // 실제 결제 처리 로직(ajax 등)이 있다면 여기에 추가
+            }
+        }
+    </script>
+</body>
+</html>

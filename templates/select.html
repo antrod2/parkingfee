@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차량 선택</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container select-container">
+        <div class="header">중복된 차량 번호</div>
+        <div class="instructions">차량을 선택해주세요:</div>
+        <ul class="car-list">
+            {% for car in cars %}
+            <li>
+                <button onclick="selectCar('{{ car.carNumber }}')">
+                    <img src="/static/image/{{ car.carNumber }}.jpg"
+                        alt="차량 이미지"
+                        class="car-image"
+                        onerror="this.onerror=null; this.src='/static/image/data/noimage.jpg';">
+
+                    차량번호: {{ car.carNumber }}<br>
+                    입차시간: {{ car.entryTime }}
+                </button>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <button class="return-button" onclick="window.location.href='/'">처음으로</button>
+    </div>
+
+    <script>
+        function selectCar(carNumber) {
+            window.location.href = `/result?carNumber=${carNumber}`;
+        }
+    </script>
+</body>
+</html>

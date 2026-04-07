@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Go™ 스마트 결제</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="modal-background" id="alertModal">
+        <div class="modal-box">
+            <p class="modal-message" id="modalMessage">메시지</p>
+            <button class="close-btn" onclick="closeModal()">확인</button>
+        </div>
+    </div>
+
+    <div class="container keypad-container">
+        <button class="settings-button" onclick="window.location.href='/settings'">⚙</button>
+        <img id="logo" src="static/image/data/logo.png" alt="로드맵 로고">
+        <div class="header">
+            Parking Go™ 스마트 결제
+        </div>
+        <div class="instructions">차량번호를 입력한 후 고객님의 차량을 선택해주세요.</div>
+        <div class="input-area">
+            <input 
+                type="text" 
+                id="car-number" 
+                inputmode="numeric" 
+                placeholder="차량번호 뒷자리 입력" 
+                maxlength="4">
+        </div>
+        <div class="keypad">
+            <button onclick="addNumber('1')">1</button>
+            <button onclick="addNumber('2')">2</button>
+            <button onclick="addNumber('3')">3</button>
+            <button onclick="addNumber('4')">4</button>
+            <button onclick="addNumber('5')">5</button>
+            <button onclick="addNumber('6')">6</button>
+            <button onclick="addNumber('7')">7</button>
+            <button onclick="addNumber('8')">8</button>
+            <button onclick="addNumber('9')">9</button>
+            <button class="special-button" onclick="clearInput()">정정</button>
+            <button onclick="addNumber('0')">0</button>
+            <button class="search-button" onclick="search()">검색</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(message) {
+            document.getElementById("modalMessage").textContent = message;
+            document.getElementById("alertModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("alertModal").style.display = "none";
+        }
+
+        function addNumber(number) {
+            const input = document.getElementById('car-number');
+            input.value += number;
+            if (input.value.length > 4) {
+                input.value = input.value.slice(0, 4);
+            }
+        }
+
+        function clearInput() {
+            document.getElementById('car-number').value = '';
+        }
+
+        async function search() {
+            const carNumber = document.getElementById('car-number').value.trim();
+
+            if (!carNumber) {
+                openModal('차량번호를 입력해주세요.');
+                return;
+            }
+
+            if (carNumber.length !== 4) {
+                openModal('차량번호 4자리를 입력해주세요.');
+                return;
+            }
+
+            const response = await fetch('/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ carNumber })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            } else {
+                openModal('차량 정보를 찾을 수 없습니다.');
+            }
+        }
+
+        // 숫자 외 입력 방지 및 최대 4자리 제한
+        document.getElementById('car-number').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+        });
+    </script>
+</body>
+</html>
