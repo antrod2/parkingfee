@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 실패</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container result-container">
+        <div class="header">Parking Go™ 스마트 결제</div>
+        <div class="instructions" style="color: #e74c3c;">✘ 결제에 실패하였습니다</div>
+
+        <div class="info-section">
+            <div class="info-item"><span>오류코드:</span><span>{{ error_code }}</span></div>
+            <div class="info-item"><span>오류메시지:</span><span>{{ error_message }}</span></div>
+        </div>
+
+        <button class="pay-button" onclick="history.back()">다시 시도</button>
+        <button class="return-button" onclick="window.location.href='/'">처음으로</button>
+    </div>
+</body>
+</html>

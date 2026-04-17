@@ -4,3 +4,5 @@ __pycache__/
 *.pyd
 .env
 *.log
+static/image/
+static/data/

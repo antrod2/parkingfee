@@ -4,7 +4,6 @@ def calc_fee(ent_str):
     ent = datetime.strptime(ent_str, "%Y-%m-%d %H:%M")
     ext = datetime.now()
     free_until = ent + timedelta(minutes=29)
-    first = 1
     day_max = 6000
     cur_date = ent.date()
     day_fee = 0
@@ -14,7 +13,6 @@ def calc_fee(ent_str):
         mins = int((ext - ent).total_seconds() / 60)
         return fmt_minutes(mins), 0
 
-    base = 600
     cur = free_until
 
     while cur < ext:
@@ -27,17 +25,13 @@ def calc_fee(ent_str):
             continue
 
         if total == 0:
-            total += base
-            day_fee += base
-
-        if first == 1:
-            first = 2
-            day_fee -= 200
-            total -= 200
-
-        if day_fee + 200 <= day_max:
-            day_fee += 200
+            # 첫 청구 스텝: 기본 요금 600원 (30~39분 구간)
+            total += 600
+            day_fee += 600
+        elif day_fee + 200 <= day_max:
+            # 이후 스텝: 10분당 200원 추가
             total += 200
+            day_fee += 200
 
         cur += timedelta(minutes=10)
 

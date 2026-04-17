@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 완료</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container result-container">
+        <div class="header">Parking Go™ 스마트 결제</div>
+        <div class="instructions" style="color: #2ecc71;">✔ 결제가 완료되었습니다</div>
+
+        <div class="info-section">
+            <div class="info-item"><span>차량번호:</span><span>{{ carNumber }}</span></div>
+            <div class="info-item"><span>결제금액:</span><span class="highlight">{{ "{:,}".format(payment.totalAmount) }} 원</span></div>
+            <div class="info-item"><span>결제수단:</span><span>{{ payment.method }}</span></div>
+            <div class="info-item"><span>결제시간:</span><span>{{ payment.approvedAt }}</span></div>
+            <div class="info-item"><span>주문번호:</span><span>{{ payment.orderId }}</span></div>
+        </div>
+
+        <button class="return-button" onclick="window.location.href='/'">처음으로</button>
+    </div>
+</body>
+</html>
